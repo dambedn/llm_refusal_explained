@@ -226,3 +226,5 @@ __marimo__/
 *.jsonl
 data/
 responses/
+
+.git/*

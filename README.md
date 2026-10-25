@@ -15,10 +15,7 @@ Run code with `uv run python script.py`, or select `.venv` as the kernel in your
 ```bash
 uv add <package>             # runtime dependency
 ```
-Commit `pyproject.toml` and `uv.lock` together. Then refresh the Colab file:
-```bash
-uv export --no-hashes --no-dev --no-emit-project -o requirements-colab.txt
-```
+Commit `pyproject.toml` and `uv.lock` together. 
 
 ### Colab
 First cell of each notebook:

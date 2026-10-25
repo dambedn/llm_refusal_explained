@@ -156,7 +156,6 @@ pyyaml==6.0.3
     #   datasets
     #   huggingface-hub
     #   transformers
-umap-learn
 regex==2026.9.29
     # via transformers
 requests==2.34.2

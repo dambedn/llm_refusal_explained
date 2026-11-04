@@ -26,6 +26,11 @@ uv add <package>             # runtime dependency
 Commit `pyproject.toml` and `uv.lock` together. 
 
 ### Colab
+To open a notebook which is on github:
+  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dambedn/llm_refusal_explained/blob/main/PATH/TO/notebook.ipynb)
+  
+Change PATH/TO/notebook.ipynb with relative path from repo root.
+
 First cell of each notebook:
 ```python
 !git clone https://github.com/dambedn/llm_refusal_explained.git 2>/dev/null || (cd llm_refusal_explained && git pull)

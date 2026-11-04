@@ -1,0 +1,5 @@
+# For Google Colab only. Dont generate this from uv.lock.
+# Only list packages Colab lacks; packages like torch, numpy, pandas, requests, huggingface-hub are already included.
+transformers>=4.56
+accelerate
+datasets # needed for OR-Bench via HF

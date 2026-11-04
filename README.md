@@ -1,0 +1,28 @@
+# llm_refusal_explained
+
+We use [uv](https://docs.astral.sh/uv/) locally, and pip for Colab usage.
+
+### Local
+```bash
+git clone https://github.com/dambedn/llm_refusal_explained.git
+cd llm_refusal_explained
+uv sync --group local        # creates .venv from uv.lock (Python 3.12)
+uv run nbstripout --install  # strips notebook outputs on commit
+```
+Run code with `uv run python script.py`, or select `.venv` as the kernel in your IDE.
+
+### Adding a package
+```bash
+uv add <package>             # runtime dependency
+```
+Commit `pyproject.toml` and `uv.lock` together. 
+
+### Colab
+First cell of each notebook:
+```python
+!git clone https://github.com/dambedn/llm_refusal_explained.git 2>/dev/null || (cd llm_refusal_explained && git pull)
+%cd llm_refusal_explained
+!pip list --format=freeze | grep -v -i -E "^(transformers|accelerate|datasets)==" > /content/constraints.txt
+!pip install -q -r requirements-colab.txt -c /content/constraints.txt
+```
+Colab's preinstalled torch is used. The Hugging Face token goes in Colab Secrets (`HF_TOKEN`), never in the repo.

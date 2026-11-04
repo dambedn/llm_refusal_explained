@@ -2,6 +2,14 @@
 
 We use [uv](https://docs.astral.sh/uv/) locally, and pip for Colab usage.
 
+
+## Task
+
+## Model(s)
+
+## Dataset(s)
+
+## Set up
 ### Local
 ```bash
 git clone https://github.com/dambedn/llm_refusal_explained.git

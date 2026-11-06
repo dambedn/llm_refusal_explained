@@ -14,7 +14,7 @@ We use [uv](https://docs.astral.sh/uv/) locally, and pip for Colab usage.
 ```bash
 git clone https://github.com/dambedn/llm_refusal_explained.git
 cd llm_refusal_explained
-uv sync --group local        # creates .venv from uv.lock (Python 3.12)
+uv sync --group local        # creates .venv from uv.lock (Python >=3.12)
 uv run nbstripout --install  # strips notebook outputs on commit
 ```
 Run code with `uv run python script.py`, or select `.venv` as the kernel in your IDE.

@@ -1,8 +1,8 @@
 # AI Reflection: Midpoint (Phase I)
 
 AI-aided pair:
-- First Name Last Name, Student ID: Elouie Rain Galan, K12450898
-- First Name Last Name, Student ID: 
+- First Name Last Name, Student ID: Elouie Rain Galan, k12450898
+- First Name Last Name, Student ID: Jasmin Felber, k11807837
 
 ## Reflection
 Working with an LLM as an interactive support created an environment where we can have an exchange of ideas, particularly the LLM takes a rough idea and is able to refine it for execution. This led to an overall faster deployment of ideas into code and deeper analysis. We initially worked individually and used the LLMs as a consulting tool to help in brainstorming ideas for ways to explore how the model behaves and afterwards, we met as a pair to discuss our results. 

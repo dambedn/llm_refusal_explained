@@ -228,3 +228,5 @@ data/
 responses/
 
 .git/*
+
+test.py

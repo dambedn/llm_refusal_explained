@@ -1,13 +1,33 @@
 {
-    "team_name": "Team Name",
+    "team_name": "red pandas",
     "students": [
         {
-            "student_id": "k00000000",
+            "student_id": "k12450898",
             "first_name": "First",
             "last_name": "Last",
             "email": "first.last@mail.com",
             "github_user": "mygitusername"
         },
-        // ...add a record for each student
+        {
+            "student_id": "k01639765",
+            "first_name": "Damian",
+            "last_name": "Bednarz",
+            "email": "K01639765@students.jku.at",
+            "github_user": "dambedn"
+        },
+        {
+            "student_id": "k12013197",
+            "first_name": "First",
+            "last_name": "Last",
+            "email": "first.last@mail.com",
+            "github_user": "mygitusername"
+        },
+        {
+            "student_id": "k11807837",
+            "first_name": "First",
+            "last_name": "Last",
+            "email": "first.last@mail.com",
+            "github_user": "mygitusername"
+        }
     ]
 }

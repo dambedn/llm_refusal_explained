@@ -2,6 +2,8 @@
 
 We use [uv](https://docs.astral.sh/uv/) locally, and pip for Colab usage. All the .ipynb notebooks for Phase_1_no_AI, plus the notebooks/01_data_inspection.ipynb notebook were checked in colab. It might well be that the current uv version to run it locally is not sufficient, please update if necessary.
 
+The relevant notebooks for the tasks live in phase-1/no-ai/analysis for the no-ai team (phase-1/no-ai/01_data_inspection.ipynb was primarily used for idea generation and data understanding).
+
 
 ## Task
 Our task revolves around the differentiation between refusal/overrefusal for unsafe/safe prompts within the Gemma family based on the XSTest dataset (see more below).
@@ -49,3 +51,13 @@ First cell of each notebook:
 !pip install -q -r requirements-colab.txt -c /content/constraints.txt
 ```
 Colab's preinstalled torch is used. The Hugging Face token goes in Colab Secrets (`HF_TOKEN`), never in the repo.
+
+## Project structure
+
+- `notebooks/`: original shared starter notebook.
+- `phase-1/no-ai/`: Phase I no-AI notebook and shareable analysis. Run the analysis notebook with `phase-1/no-ai/analysis/` as the working directory so its data files are found.
+- `phase-1/ai-assisted/`: Phase I inference, judging and analysis notebooks. These use the notebook working directory for their data and outputs; the analysis expects six CSV files under `outputs/judged/`, which are not included.
+- `phase-2/`: reserved for Phase II, with `no-ai/` and `ai-assisted/` directories.
+- `ai-interactions/`: AI interaction records.
+
+The original notebooks retain their code and saved outputs; review their input paths and outputs before running or publishing them.

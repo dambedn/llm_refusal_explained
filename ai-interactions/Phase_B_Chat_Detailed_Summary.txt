@@ -1,0 +1,189 @@
+DETAILED CHAT SUMMARY — PHASE B ANALYSIS AND UMAP VISUALIZATIONS
+Date of latest notebook work: 2026-11-09
+
+1. PROJECT CONTEXT
+The conversation has focused on developing, evaluating, and improving a Jupyter notebook for Phase B analysis. The project compares six experimental conditions using six CSV datasets, each intended to contain 450 observations. The datasets contain prompts, ground-truth labels, model responses, and judge evaluations.
+
+The main objectives have been to:
+- Analyze model behavior across experimental conditions.
+- Compare helpfulness and safety outcomes.
+- Identify over-refusal on safe prompts and unsafe compliance.
+- Visualize differences between conditions.
+- Improve statistical rigor, clarity, and presentation.
+- Add UMAP visualizations to explore patterns in prompts and responses.
+
+2. THE SIX EXPERIMENTAL DATASETS
+The analysis uses:
+- phase_b_baseline(2).csv — Baseline
+- phase_b_helpful_explicit(2).csv — Helpful explicit
+- phase_b_helpful_first(2).csv — Helpful first
+- phase_b_helpful_neutral(2).csv — Helpful neutral
+- phase_b_safety_explicit(2).csv — Safety explicit
+- phase_b_safety_first(2).csv — Safety first
+
+Relevant columns include:
+id, condition, prompt, ground_truth, category, focus, response,
+judge_behavior, judge_label, judge_reasoning, judge_raw, judge_error.
+
+3. NOTEBOOK DEVELOPMENT HISTORY
+Several notebook versions and bundles were created: initial analysis and visualization notebooks, combined analysis notebooks, improved visualization notebooks, a merged notebook with simple and advanced plots, and a final notebook uploaded on November 6, 2026.
+
+The most recent source notebook for the UMAP work was:
+FinalVersion(20261106-154249).ipynb
+
+It included data loading and validation, condition-level scorecards, safe/unsafe outcome analysis, category-level over-refusal analysis, paired baseline comparisons, focus-level analysis, statistical testing, and figure generation/export. Figure 07 was intentionally excluded in earlier visualization work.
+
+4. NOTEBOOK EVALUATION
+The notebook was assessed at 8.5/10 (A− / strong B+).
+
+Rubric:
+- Data preparation: 9/10
+- Statistical analysis: 8.5/10
+- Visualizations: 9/10
+- Interpretation: 9/10
+- Reproducibility: 8/10
+- Completeness: 7.5/10
+
+Strengths:
+- Loads and combines the six datasets and checks required columns.
+- Separates safe and unsafe prompts.
+- Examines over-refusal, harmful compliance, and refusal behavior.
+- Uses paired comparisons against baseline, aligning observations by prompt ID and ground truth.
+- Uses exact binomial testing on discordant pairs, corresponding to an exact McNemar test.
+- Uses bootstrap confidence intervals based on paired prompt-level binary differences with a fixed random seed.
+- Includes category-level and focus-level analyses.
+
+Recommended improvements:
+1. Add Holm correction for multiple statistical comparisons.
+2. Strengthen validation for duplicate IDs, ground-truth consistency, expected conditions, and label coverage.
+3. Improve dependency and installation documentation.
+4. Complete and execute the UMAP section.
+5. Explain UMAP limitations, especially the influence of semantic prompt similarity.
+6. Run the entire notebook from beginning to end in a clean environment.
+
+The assessment was that the notebook did not need a redesign. Targeted improvements could bring it closer to 9–9.5/10.
+
+5. FIRST UMAP ADDITION
+The user asked about UMAP and then requested that it be added.
+
+The initial UMAP design visualized semantic structure of model responses using Sentence Transformers, the all-MiniLM-L6-v2 embedding model, UMAP dimensionality reduction, two-dimensional coordinates, color coding by experimental condition, and marker shapes to distinguish safe and unsafe ground truth.
+
+The intended purpose was to explore whether responses from different conditions formed distinguishable semantic clusters. The section also included coordinate CSV export, a figure catalog entry, a requirements file, and installation documentation.
+
+Important limitation: the UMAP code was added but not executed in the environment because the required packages were unavailable for installation at that time.
+
+6. INTERACTIVE UMAP BASED ON THE USER'S EXAMPLE
+The user uploaded analysis(4).ipynb and asked: "Use map like inhere".
+
+The notebook was updated to follow the interactive Plotly-style UMAP approach from the example. The intended visualizations included an animated UMAP for safe prompts, one animation frame per experimental condition, color coding based on judge labels, hover information containing prompt IDs and prompt text, and fixed UMAP coordinates for comparisons across conditions.
+
+The safe-prompt animation used the judge-label order:
+1. helpful_engagement
+2. partial_refusal
+3. over_refusal
+
+The updated notebook was named:
+Phase_B_FinalVersion_UMAP_ReferenceStyle.ipynb
+
+The UMAP and Sentence Transformer dependencies were still required, and the notebook was not fully executed.
+
+7. BASELINE DIFFERENCE MAPS
+The user then provided Plotly code for an animated UMAP of safe prompts and asked: "plot the differences".
+
+The notebook was updated to compare each prompt's current condition label with its baseline label. The comparison matches prompts using their IDs and uses ground truth to define a descriptive ordinal desirability mapping.
+
+For safe prompts:
+over_refusal -> partial_refusal -> helpful_engagement
+
+For unsafe prompts:
+harmful_compliance -> partial_compliance -> correct_refusal
+
+The code classifies changes as:
+- Improved: movement toward the desired behavior.
+- No change: the judge label is identical to baseline.
+- Worsened: movement away from the desired behavior.
+- Other transition: a label change not captured by the ordinal improvement/worsening scale.
+
+These ordinal scores are used only as a descriptive visualization aid. They do not establish that the categories are equally spaced.
+
+8. NEW VISUALIZATIONS AND EXPORTS
+The updated notebook adds:
+
+A. Animated overall difference map
+Shows all prompts and changes relative to baseline, with one frame per experimental condition.
+
+B. Safe-prompt difference map
+Highlights whether each condition improves or worsens behavior on safe prompts.
+
+C. Unsafe-prompt difference map
+Highlights whether each condition improves or worsens behavior on unsafe prompts.
+
+D. Quantitative summary chart
+Shows the percentage of prompts that improved, stayed the same, or worsened, separately by condition and ground truth.
+
+E. Data exports
+The notebook code writes:
+- umap_prompt_changes_vs_baseline_animated.html
+- umap_safe_changes_vs_baseline_animated.html
+- umap_unsafe_changes_vs_baseline_animated.html
+- umap_change_summary_vs_baseline.html
+- umap_change_summary_vs_baseline.csv
+- umap_prompt_differences_vs_baseline.csv
+
+The safe/unsafe HTML filenames are generated using the pattern:
+umap_{truth_value}_changes_vs_baseline_animated.html
+
+9. LATEST NOTEBOOK
+The latest updated notebook is:
+Phase_B_FinalVersion_UMAP_Differences.ipynb
+
+Link:
+sandbox:/mnt/data/Phase_B_FinalVersion_UMAP_Differences.ipynb
+
+The new cells were inserted into the notebook, but full execution of those cells has not been confirmed. The UMAP and Sentence Transformer dependencies are required, and the earlier UMAP setup must execute successfully first.
+
+10. IMPORTANT METHODOLOGICAL CONSIDERATIONS
+
+A. Fixed coordinates
+For condition-to-condition difference maps, each prompt should retain the same UMAP coordinates across all animation frames. Otherwise, apparent movement may be caused by recalculating the embedding rather than a change in model behavior. The current difference-map approach keeps coordinates fixed and changes point colors.
+
+B. Paired baseline comparisons
+The difference maps rely on matching the same prompt across conditions. The notebook matches observations using prompt IDs. This should be validated to ensure each non-baseline prompt has exactly one corresponding baseline observation.
+
+C. UMAP is exploratory
+UMAP can reveal patterns in high-dimensional semantic representations, but nearby points are not necessarily behaviorally equivalent, cluster separation does not establish statistical significance, prompt wording and semantic similarity can influence clusters, and the visualizations should complement rather than replace statistical tests.
+
+D. Judge labels
+The difference maps reflect the judge's classifications. They are not independent measurements of model behavior. The results should be described as changes in judge-classified behavior unless the judge labels have been independently validated.
+
+E. Ordinal mapping
+The improved/worsened categories are useful for communicating direction, but the original judge categories are categorical. The report should retain the original labels and explain the ordinal mapping instead of treating score differences as continuous behavioral measurements.
+
+11. CURRENT STATUS
+- Original six CSV datasets: available in the project workspace.
+- Combined analysis notebooks: created.
+- Earlier visualization bundles: created.
+- Final uploaded notebook: inspected and graded.
+- Response-level UMAP: code added.
+- Interactive prompt-level UMAP: code added.
+- Animated safe-prompt map: code added.
+- Baseline difference maps: code added.
+- Difference summary chart: code added.
+- Full execution of new UMAP cells: not confirmed.
+- Final exported HTML maps: not confirmed.
+
+12. RECOMMENDED NEXT STEPS
+1. Run the notebook from beginning to end and confirm that all datasets and UMAP cells execute.
+2. Verify prompt matching: each non-baseline prompt should have exactly one baseline observation.
+3. Validate that the actual judge labels match the categories used in the difference-map code.
+4. Inspect the HTML animations and ensure all conditions appear in the intended order and points remain in fixed positions.
+5. Review the quantitative summary and verify that percentages use the correct denominator for each condition and ground-truth group.
+6. Add Holm-adjusted statistical results.
+7. Write the interpretation using actual results, not visual impressions alone.
+
+13. OVERALL CONCLUSION
+The project has evolved from a conventional experimental analysis notebook into a broader analysis environment combining descriptive statistics, paired statistical testing, safe/unsafe behavioral evaluation, category-level analysis, response-level semantic visualization, interactive prompt-level UMAP, animated condition comparisons, baseline-relative difference maps, and quantitative summaries.
+
+The key recent improvement is the distinction between showing how each condition looks and showing how each prompt's classification changes relative to baseline.
+
+The main outstanding task is execution and validation. Until the new cells have run successfully against the actual six datasets, the maps should be treated as implemented analysis code, not as completed empirical findings.

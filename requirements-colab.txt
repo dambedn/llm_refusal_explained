@@ -1,5 +1,11 @@
-# For Google Colab only. Dont generate this from uv.lock.
-# Only list packages Colab lacks; packages like torch, numpy, pandas, requests, huggingface-hub are already included.
-transformers>=4.56
+# For Google Colab only. Do not generate this from uv.lock.
+# Colab provides torch, numpy, pandas, matplotlib, requests, scipy, and seaborn.
+transformers>=4.56,<5
 accelerate
-datasets # needed for OR-Bench via HF
+datasets
+ipython
+ipywidgets
+plotly
+python-dotenv
+sentence-transformers
+umap-learn

@@ -1,11 +1,25 @@
 {
-    "team_name": "Team Name",
+    "team_name": "red pandas",
     "students": [
         {
             "first_name": "First",
             "last_name": "Last",
             "workload": 0.25
         },
-        // ...add a record for each student
+        {
+            "first_name": "Damian",
+            "last_name": "Bednarz",
+            "workload": 0.25
+        },
+        {
+            "first_name": "First",
+            "last_name": "Last",
+            "workload": 0.25
+        },
+        {
+            "first_name": "First",
+            "last_name": "Last",
+            "workload": 0.25
+        }
     ]
 } 

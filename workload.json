@@ -12,8 +12,8 @@
             "workload": 0.25
         },
         {
-            "first_name": "First",
-            "last_name": "Last",
+            "first_name": "Martin",
+            "last_name": "Niederl",
             "workload": 0.25
         },
         {
@@ -22,4 +22,4 @@
             "workload": 0.25
         }
     ]
-} 
+}
